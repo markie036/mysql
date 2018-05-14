@@ -14,8 +14,10 @@ connection = pymysql.connect(host='localhost',
 
 try:
     with connection.cursor() as cursor:
-        row = ("Rich", 21, "1997-02-08 22:22:15")
-        cursor.execute("INSERT INTO Friends VALUES (%s, %s, %s);", row)
+        rows = [("Rich", 21, "1997-02-08 22:22:15"),
+                ("Dan", 45, "1977-05-04 10:25:50"),
+                ("Archebald", 82, "1943-09-09 09:46:43")]
+        cursor.executemany("INSERT INTO Friends VALUES (%s, %s, %s);", rows)
         connection.commit()
         # Note that the above will still display a warning (not error) if the
         # table already exists
