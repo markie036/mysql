@@ -1,0 +1,2 @@
+mysql > tee mysql> tee file 'TrackGenre.txt';
+mysql> notee
