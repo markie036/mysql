@@ -14,8 +14,9 @@ connection = pymysql.connect(host='localhost',
 
 try:
     with connection.cursor() as cursor:
-        cursor.execute("""CREATE TABLE IF NOT EXISTS
-                          Friends(name char(20), age int, DOB datetime);""")
+        row = ("Rich", 21, "1997-02-08 22:22:15")
+        cursor.execute("INSERT INTO Friends VALUES (%s, %s, %s);", row)
+        connection.commit()
         # Note that the above will still display a warning (not error) if the
         # table already exists
 finally:
